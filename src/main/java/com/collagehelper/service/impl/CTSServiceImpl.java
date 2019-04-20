@@ -23,4 +23,9 @@ public class CTSServiceImpl implements CTSService {
     public List<CTSDO> getSellerByCPhone(String cPhone) {
         return ctsdoMapper.getSellerByCPhone(cPhone);
     }
+
+    @Override
+    public int deleteByPrimaryKey(int id) {
+        return ctsdoMapper.deleteByPrimaryKey(id);
+    }
 }

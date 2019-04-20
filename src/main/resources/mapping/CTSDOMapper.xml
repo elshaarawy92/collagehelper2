@@ -42,6 +42,7 @@
     from customer_to_seller
     where customer_phone = #{cPhone,jdbcType=VARCHAR}
   </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     <!--
       WARNING - @mbg.generated
@@ -51,6 +52,7 @@
     delete from customer_to_seller
     where id = #{id,jdbcType=INTEGER}
   </delete>
+
   <insert id="insert" parameterType="com.collagehelper.dataobject.CTSDO">
     <!--
       WARNING - @mbg.generated

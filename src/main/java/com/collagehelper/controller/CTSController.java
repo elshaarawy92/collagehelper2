@@ -31,10 +31,16 @@ public class CTSController {
     @ResponseBody
     public CommonReturnType getSellerByCPhone(@RequestParam("customer_phone")String cPhone){
         List<CTSDO> list = ctsService.getSellerByCPhone(cPhone);
-        if (list == null){
+        if (list.size() == 0){
             return CommonReturnType.create("failure",null);
         }else {
             return CommonReturnType.create(list);
         }
+    }
+
+    @GetMapping("/delete_seller")
+    @ResponseBody
+    public void deleteByPrimaryKey(@RequestParam("id")int id){
+        ctsService.deleteByPrimaryKey(id);
     }
 }
