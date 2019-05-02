@@ -28,15 +28,11 @@
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
-        <table tableName="user_info" domainObjectName="UserDO" enableCountByExample="false"
+        <table tableName="assemble_info" domainObjectName="AssembleDO" enableCountByExample="false"
                enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false"></table>
 
-        <table tableName="goods_info" domainObjectName="GoodsDO" enableCountByExample="false"
-               enableUpdateByExample="false" enableDeleteByExample="false"
-               enableSelectByExample="false"></table>
-
-        <table tableName="customer_to_seller" domainObjectName="CTSDO" enableCountByExample="false"
+        <table tableName="assemble_person" domainObjectName="APDO" enableCountByExample="false"
                enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false"></table>
     </context>
