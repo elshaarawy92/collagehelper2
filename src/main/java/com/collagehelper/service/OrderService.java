@@ -1,14 +1,18 @@
 package com.collagehelper.service;
 
-import com.collagehelper.dataobject.OrderDO;
+import com.collagehelper.dataobject.FormDO;
 
 import java.util.List;
 
 public interface OrderService {
 
-    void addToDB(OrderDO orderDO);
+    void addToDB(FormDO formDO);
 
-    List<OrderDO> selectByCustomerPhone(String customerPhone);
+    List<FormDO> selectByCustomerPhone(String customerPhone);
 
-    List<OrderDO> selectBySellerPhone(String sellerPhone);
+    List<FormDO> selectBySellerPhone(String sellerPhone);
+
+    List<FormDO> selectByStatus(String status,String customerPhone);
+
+    int updateByOrderId(String orderId,String status);
 }

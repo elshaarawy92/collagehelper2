@@ -1,5 +1,7 @@
 package com.collagehelper.controller;
 
+import com.collagehelper.dataobject.FormDO;
+import com.collagehelper.dataobject.FormSDO;
 import com.collagehelper.dataobject.OrderDO;
 import com.collagehelper.dataobject.OrderSDO;
 import com.collagehelper.service.OrderSService;
@@ -29,8 +31,9 @@ public class OrderController {
                         @RequestParam("time")String time,
                         @RequestParam("money")String money,
                         @RequestParam("goods_id")int goodsId,
-                        @RequestParam("goods_count")int goodsCount){
-        OrderDO orderDO = new OrderDO();
+                        @RequestParam("goods_count")int goodsCount,
+                        @RequestParam("status")String status){
+        FormDO orderDO = new FormDO();
         orderDO.setCustomerPhone(customerPhone);
         orderDO.setSellerPhone(sellerPhone);
         orderDO.setOrderId(orderId);
@@ -38,7 +41,8 @@ public class OrderController {
         orderDO.setMoney(money);
         orderDO.setGoodsId(goodsId);
         orderDO.setGoodsCount(goodsCount);
-        OrderSDO orderSDO = new OrderSDO();
+        orderDO.setStatus(status);
+        FormSDO orderSDO = new FormSDO();
         orderSDO.setCustomerPhone(customerPhone);
         orderSDO.setSellerPhone(sellerPhone);
         orderSDO.setOrderId(orderId);
@@ -46,14 +50,15 @@ public class OrderController {
         orderSDO.setMoney(money);
         orderSDO.setGoodsId(goodsId);
         orderSDO.setGoodsCount(goodsCount);
+        orderSDO.setStatus(status);
         orderService.addToDB(orderDO);
         orderSService.addToDB(orderSDO);
     }
 
     @GetMapping("/sbcp")
     @ResponseBody
-    public List<OrderDO> selectByCustomerPhone(@RequestParam("customer_phone")String customerPhone){
-        List<OrderDO> list = orderService.selectByCustomerPhone(customerPhone);
+    public List<FormDO> selectByCustomerPhone(@RequestParam("customer_phone")String customerPhone){
+        List<FormDO> list = orderService.selectByCustomerPhone(customerPhone);
         if (list.size() == 0){
             return null;
         }else {
@@ -63,12 +68,33 @@ public class OrderController {
 
     @GetMapping("/sbsp")
     @ResponseBody
-    public List<OrderSDO> selectBySellerPhone(@RequestParam("seller_phone")String sellerPhone){
-        List<OrderSDO> list = orderSService.selectBySellerPhone(sellerPhone);
+    public List<FormSDO> selectBySellerPhone(@RequestParam("seller_phone")String sellerPhone){
+        List<FormSDO> list = orderSService.selectBySellerPhone(sellerPhone);
         if (list.size() == 0){
             return null;
         }else {
             return list;
         }
+    }
+
+    @GetMapping("/sbcs")
+    @ResponseBody
+    public List<FormDO> selectByCustomerStatus(@RequestParam("status")String status,
+                                               @RequestParam("customer_phone")String customerPhone){
+        return orderService.selectByStatus(status,customerPhone);
+    }
+
+    @GetMapping("/sbss")
+    @ResponseBody
+    public List<FormSDO> selectBySellerStatus(@RequestParam("status")String status){
+        return orderSService.selectByStatus(status);
+    }
+
+    @GetMapping("/update")
+    @ResponseBody
+    public void updateByOrderId(@RequestParam("order_id")String orderId,
+                                @RequestParam("status")String status){
+        orderService.updateByOrderId(orderId,status);
+        orderSService.updateByOrderId(orderId,status);
     }
 }
