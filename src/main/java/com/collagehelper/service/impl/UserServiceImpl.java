@@ -21,4 +21,14 @@ public class UserServiceImpl implements UserService {
     public void regist(UserDO userDO){
         userDOMapper.insert(userDO);
     }
+
+    @Override
+    public void insertFace(String face, String phone) {
+        userDOMapper.insertFace(face,phone);
+    }
+
+    @Override
+    public UserDO selectByPhoneAndFace(String phone, String face) {
+        return userDOMapper.selectByPhoneAndFace(phone,face);
+    }
 }

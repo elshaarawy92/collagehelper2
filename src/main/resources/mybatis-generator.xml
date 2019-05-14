@@ -28,11 +28,7 @@
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
-        <table tableName="form_info" domainObjectName="FormDO" enableCountByExample="false"
-               enableUpdateByExample="false" enableDeleteByExample="false"
-               enableSelectByExample="false"></table>
-
-        <table tableName="form_info_seller" domainObjectName="FormSDO" enableCountByExample="false"
+        <table tableName="user_info" domainObjectName="UserDO" enableCountByExample="false"
                enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false"></table>
     </context>

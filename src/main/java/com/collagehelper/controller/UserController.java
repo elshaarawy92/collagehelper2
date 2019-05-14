@@ -58,4 +58,18 @@ public class UserController{
             return -1;
         }
     }
+
+    @GetMapping("/face")
+    @ResponseBody
+    public void insertFace(@RequestParam("phone")String phone,
+                           @RequestParam("face")String face){
+        userService.insertFace(face,phone);
+    }
+
+    @GetMapping("/sbpf")
+    @ResponseBody
+    public UserDO selectByPhoneAndFace(@RequestParam("phone")String phone,
+                                       @RequestParam("face")String face){
+        return userService.selectByPhoneAndFace(phone,face);
+    }
 }
